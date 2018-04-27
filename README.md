@@ -38,17 +38,21 @@ $ R <ARK.R --save <br>
   "PRICE.csv" will store the simulated HSI price on each trading day in each simulation; <br>
   "RETURN.csv" will store the cumulative return of the portfolio at the end of the contract for investors; <br>
   "TOTAL.csv" will store the total value of the portofolio, including investment in risk-free asset, value of options, <br>
-  and coupons distributed to investors. <br>
+   and coupons distributed to investors. <br>
   "VALUE.csv" will store the value of exsisting options in the portfolio on each trading day. <br>
+  
   Graphs for price, value, cash and total value are also generated for each simulation. <br>
+  
   Graphs will be stored under ./Simulations/Graph/ and simulation data will be stored in .csv files under ./Simulations/ <br>
 #### To run backtesting with two given datasets (BacktestBear.xlsx and BacktestBull.xlsx), execute: 
 
 $ R <Backtest.R --save
-  Seven csv files will be generated, which contains the backtesting results for bear and bull markets.
-  Please refer to last part for the detailed contents of these csv files.
-  Two graphs will be generated, showing changes in price, value, cash and total value for bull and bear markets backtesting.
-  Data will be stored in .csv files under ./Backtests/ and graphs of the two backtesting will be stored undner ./Backtests/Graph
+  Seven csv files will be generated, which contains the backtesting results for bear and bull markets. <br>
+  Please refer to last part for the detailed contents of these csv files. <br>
+  
+  Two graphs will be generated, showing changes in price, value, cash and total value for bull and bear markets backtesting. <br>
+  
+  Data will be stored in .csv files under ./Backtests/ and graphs of the two backtesting will be stored undner ./Backtests/Graph <br>
 
 ## Run program using RStudio
 #### First, open RStudio by GUI or execute under the directory of this file: 

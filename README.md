@@ -25,9 +25,23 @@ FINA4353 Financial Engineering Structured Product Design Project
 
 ### Master scripts:
 #### ARK.R: 
-This module is developed for simulating portfolio performance for our structured product.
+This module is developed for generating portfolio performance simulation results for our structured product.
 #### Backtest.R: 
-This module is developed for backtesting the portfolio in bear and bull market using empirical data.
+This module is developed for generating backtesting results for the portfolio in bear and bull market using empirical data.
+
+### Supporting modules:
+#### simulation.R:
+This module provides a supporting function for simulating portfolio performance on pre-determined conditions.
+#### options.R:
+This module provides functions for calculating prices for European put, European call, and put on European put.
+#### backtest.source.R:
+This module provides a supporting function for tracking portfolio performance on historical data.
+
+### Input data:
+#### BacktestBear.rds: 
+This file contains the historical price data for HSI in 2007 ~ 2009 bear market.
+#### BacktestBull.rds:
+This file contains the historical price data for HSI in 2016 ~ 2018 bull market.
 
 ## Run program by command line:
     This program can be executed by command line under Linux environment.

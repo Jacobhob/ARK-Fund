@@ -29,6 +29,8 @@ FINA4353 Financial Engineering Structured Product Design Project
 
 $ R <ARK.R --save <br>
 
+#### Output of the program:
+
   A directory "Simulations" will be created under the current directory for storing the results. <br>
   
   Seven csv files will be generated and saved to ./Simulations: <br>
@@ -47,6 +49,9 @@ $ R <ARK.R --save <br>
 #### To run backtesting with two given datasets (BacktestBear.xlsx and BacktestBull.xlsx), execute: 
 
 $ R <Backtest.R --save
+
+#### Output of the program:
+
   Seven csv files will be generated, which contains the backtesting results for bear and bull markets. <br>
   Please refer to last part for the detailed contents of these csv files. <br>
   

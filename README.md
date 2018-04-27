@@ -18,9 +18,17 @@ FINA4353 Financial Engineering Structured Product Design Project
 
 @ Date: 4/27/2018
 
-# Files Contained and Usage:
 
 # Instruction for Using the Package:
+
+## Files contained and usage:
+
+### Master scripts:
+#### ARK.R: 
+This module is developed for simulating portfolio performance for our structured product.
+#### Backtest.R: 
+This module is developed for backtesting the portfolio in bear and bull market using empirical data.
+
 ## Run program by command line:
     This program can be executed by command line under Linux environment.
     For R environment, we suggest using R version 3.4.4 (2018-03-15) -- "Someone to Lean On" to run this set of programs.

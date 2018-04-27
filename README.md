@@ -30,6 +30,7 @@ FINA4353 Financial Engineering Structured Product Design Project
 $ R <ARK.R --save <br>
 
   A directory "Simulations" will be created under the current directory for storing the results. <br>
+  
   Seven csv files will be generated and saved to ./Simulations: <br>
   "BANK.csv" will store the bank revenue for each simulation, with specific revenue generated in each 0.5 years stored separately; <br>
   "CASH.csv" will store the value of investment in risk-free asset on each trading day for each simulation; <br>

@@ -27,8 +27,8 @@ FINA4353 Financial Engineering Structured Product Design Project
 #### First, enter the directory of this file by command line
 #### To run simulations on current stock price, execute: 
 
-$ R <ARK.R --save
-  
+$ R <ARK.R --save <br>
+
   A directory "Simulations" will be created under the current directory for storing the results.
   Seven csv files will be generated and saved to ./Simulations: 
   "BANK.csv" will store the bank revenue for each simulation, with specific revenue generated in each 0.5 years stored separately;

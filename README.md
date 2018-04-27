@@ -41,3 +41,5 @@ $ rstudio *.R &
 #### Set up working directory
  
 Use setwd({the path of this file}) to change the working directory.
+#### Run all the lines in ARK.R using RStudio to run simulations.
+#### Run all the lines in Backtest.R using RStudion to run backtests on two given datasets.

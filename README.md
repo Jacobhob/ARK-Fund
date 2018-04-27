@@ -29,18 +29,18 @@ FINA4353 Financial Engineering Structured Product Design Project
 
 $ R <ARK.R --save <br>
 
-  A directory "Simulations" will be created under the current directory for storing the results.
-  Seven csv files will be generated and saved to ./Simulations: 
-  "BANK.csv" will store the bank revenue for each simulation, with specific revenue generated in each 0.5 years stored separately;
-  "CASH.csv" will store the value of investment in risk-free asset on each trading day for each simulation;
-  "KNOCKOUT.csv" will store the knockout day for each simulation, and x=0 means no knockout occurs in this simulation;
-  "PRICE.csv" will store the simulated HSI price on each trading day in each simulation;
-  "RETURN.csv" will store the cumulative return of the portfolio at the end of the contract for investors;
-  "TOTAL.csv" will store the total value of the portofolio, including investment in risk-free asset, value of options, 
-  and coupons distributed to investors.
-  "VALUE.csv" will store the value of exsisting options in the portfolio on each trading day.
-  Graphs for price, value, cash and total value are also generated for each simulation.
-  Graphs will be stored under ./Simulations/Graph/ and simulation data will be stored in .csv files under ./Simulations/
+  A directory "Simulations" will be created under the current directory for storing the results. <br>
+  Seven csv files will be generated and saved to ./Simulations: <br>
+  "BANK.csv" will store the bank revenue for each simulation, with specific revenue generated in each 0.5 years stored separately; <br>
+  "CASH.csv" will store the value of investment in risk-free asset on each trading day for each simulation; <br>
+  "KNOCKOUT.csv" will store the knockout day for each simulation, and x=0 means no knockout occurs in this simulation; <br>
+  "PRICE.csv" will store the simulated HSI price on each trading day in each simulation; <br>
+  "RETURN.csv" will store the cumulative return of the portfolio at the end of the contract for investors; <br>
+  "TOTAL.csv" will store the total value of the portofolio, including investment in risk-free asset, value of options, <br>
+  and coupons distributed to investors. <br>
+  "VALUE.csv" will store the value of exsisting options in the portfolio on each trading day. <br>
+  Graphs for price, value, cash and total value are also generated for each simulation. <br>
+  Graphs will be stored under ./Simulations/Graph/ and simulation data will be stored in .csv files under ./Simulations/ <br>
 #### To run backtesting with two given datasets (BacktestBear.xlsx and BacktestBull.xlsx), execute: 
 
 $ R <Backtest.R --save

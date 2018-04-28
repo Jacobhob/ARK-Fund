@@ -27,7 +27,7 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252))
       total.value[j,1] <- value[j,1] + cash[j,1]
     } 
-    # Day 126:
+    # Day 126: execute put on put, roll put forward, and deliver the first dividend
     else if (j == 126) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 1-j/252, k2) + 
                     put.on.put.formula(price[j,1], k3, p, sigma, r, 1-j/252, 1.5-j/252, d) + 
@@ -48,7 +48,7 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252))
       total.value[j,1] <- value[j,1] + cash[j,1] + initial.price * coupon
     }
-    # Day 252:
+    # Day 252: execute put on put, roll put forward, and deliver the second dividend
     else if (j == 252) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 1.5-j/252, k3) +
                     put.on.put.formula(price[j,1], k4, p, sigma, r, 1.5-j/252, 2-j/252, d)
@@ -67,7 +67,7 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) 
       total.value[j,1] <- value[j,1] + cash[j,1] + initial.price * coupon * 2
     }
-    # Day 378:
+    # Day 378: execute put on put, roll put forward,deliver the last dividend
     else if (j == 378) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 2-j/252, k4) 
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) - p + max(k3 -price[379,1], 0) - 
@@ -84,24 +84,28 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
       cash[j,1]  <- cash[j-1,1] * exp(r*(1/252)) 
       total.value[j,1] <- value[j,1] + cash[j,1] + initial.price * coupon * 3
     }
-    # Day 505, the last day:
+    # Day 505, the last day: execute the last put
     else if (j == 505) {
       value[j,1] <- 0
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) + max(k4 - price[505,1], 0) 
       total.value[j,1] <- cash[j,1] + initial.price * coupon * 3
     }
     
-    # We set a downward knock out rate of 95%. If the value of our portfolio is below 95% 
-    # , we clear out all position and invest in bond to make pricipal guaranteed.
+    # If the value of our portfolio is below bond floor,
+    # we clear out all position and invest in bond to make pricipal guaranteed.
     if (!exists("period", mode = "function")) {
       period <- function(j) {
-        if (j <= 127) {period <- 0} 
-        else if (j <= 253) {period <- 1} 
-        else if (j <= 379) {period <- 2} 
+        if (j <= 126) {period <- 0} 
+        else if (j <= 252) {period <- 1} 
+        else if (j <= 378) {period <- 2} 
         else if (j <= 505) {period <- 3}
       }
     }
-    if (total.value[j,1] < 0.95 * initial.price * exp(-r*(2-j/252))) {
+    if (total.value[j,1] < (0.85 * exp(-r * (2-j/252)) + 
+                            0.033 * exp(-r * max(1.5-j/252, 0)) + 
+                            0.033 * exp(-r * max(1-j/252, 0)) + 
+                            0.033 * exp(-r * max(0.5-j/252, 0))) * 
+                            initial.price) {
       cash[j,1] <- cash[j,1] + value[j,1]
       value[j:505,1] <- 0
       for (n in (j+1):505) {

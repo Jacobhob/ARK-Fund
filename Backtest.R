@@ -57,7 +57,6 @@ backtest(historical.price, days, r, d, coupon, sigma, initial.price, management.
 # Load in historical stock price
 for (i in 1:days) {historical.price[i,1] <- bull$Price[i]}
 initial.price <- bull$Price[1]
-historical.price[1,1] <- initial.price
 backtest(historical.price, days, r, d, coupon, sigma, initial.price, management.fee, c)
 
 # Ploting for each simulation

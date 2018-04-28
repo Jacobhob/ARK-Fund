@@ -1,9 +1,9 @@
 backtest <- function(historical.price, days, r, d, coupon, sigma, initial.price, management.fee, c) {
   
   k1 <- c * historical.price[1,1]   # Strike price of first put
-  k2 <- c * historical.price[127,1] # Strike price of second put
-  k3 <- c * historical.price[253,1] # Strik3 price of third put
-  k4 <- c * historical.price[379,1] # Strike price of final put
+  k2 <- c * historical.price[126,1] # Strike price of second put
+  k3 <- c * historical.price[252,1] # Strik3 price of third put
+  k4 <- c * historical.price[378,1] # Strike price of final put
   p  <- euro.put(historical.price[1,1], sigma, r, d, 0.5, c*initial.price) # Strike price of put on put
   
   cash[1,1] <- initial.price - p - 

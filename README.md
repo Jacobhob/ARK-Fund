@@ -82,7 +82,8 @@ $ R <Backtest.R --save
   Data will be stored in .csv files under ./Backtests/ and graphs of the two backtesting will be stored undner ./Backtests/Graph <br>
 
 ## Run program using RStudio
-#### First, open RStudio by GUI or execute under the directory of this file: 
+#### Download and extract ARK-Fund from Github
+#### Then open RStudio by GUI or execute under the directory of this file: 
 
 $ rstudio *.R &
 #### Set up working directory

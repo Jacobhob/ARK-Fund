@@ -24,7 +24,7 @@ FINA4353 Financial Engineering Structured Product Design Project
 ## Files contained and usage:
 
 ### Packages installed for runing the code:
-"mnormt": For calculating cdf for nomal (binomial nomal) distribution.
+"mnormt": For calculating cdf for nomal (binomial nomal) distribution. <br>
 "data.table": For writing results to csv files.
 
 ### Master scripts:

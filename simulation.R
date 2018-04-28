@@ -1,5 +1,7 @@
 simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee, c) {
   # Stock price simulation
+
+
   for (i in 1:(days-1)) {
     dW <- sqrt(1/252) * rnorm(1)
     price[i+1,1] <- price[i,1] * exp((r - d - (1/2) * sigma^2) * (1/252) + sigma * dW)

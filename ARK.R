@@ -1,5 +1,4 @@
 library("data.table")
-library("readxl")
 # Store all files in directory "./Simulations", sore graphs in "./Simulations/Graph"
 dir.create("./Simulations")
 dir.create("./Simulations/Graph")

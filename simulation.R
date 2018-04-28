@@ -107,7 +107,8 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
                             0.033 * exp(-r * max(1.5-j/252, 0)) + 
                             0.033 * exp(-r * max(1-j/252, 0)) + 
                             0.033 * exp(-r * max(0.5-j/252, 0))) * 
-                            initial.price) {
+                            initial.price 
+                            || price[j, 1] > 2*initial.price) {
       cash[j,1] <- cash[j,1] + value[j,1]
       value[j:505,1] <- 0
       for (n in (j+1):505) {

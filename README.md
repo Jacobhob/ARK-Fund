@@ -18,6 +18,8 @@ FINA4353 Financial Engineering Structured Product Design Project
 
 @ Date: 4/27/2018
 
+@ URL: https://github.com/Jacobhob/ARK-Fund
+
 
 # Instruction for Using the Package:
 

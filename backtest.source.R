@@ -90,13 +90,18 @@ backtest <- function(historical.price, days, r, d, coupon, sigma, initial.price,
     # , we clear out all position and invest in bond to make pricipal guaranteed.
     if (!exists("period", mode = "function")) {
       period <- function(j) {
-        if (j <= 127) {period <- 0} 
-        else if (j <= 253) {period <- 1} 
-        else if (j <= 379) {period <- 2} 
+        if (j <= 126) {period <- 0} 
+        else if (j <= 252) {period <- 1} 
+        else if (j <= 378) {period <- 2} 
         else if (j <= 505) {period <- 3}
       }
     }
-    if (total.value[j,1] < 0.95 * initial.price * exp(-r*(2-j/252))) {
+    if (total.value[j,1] < (0.85 * exp(-r * (2-j/252)) + 
+                            0.033 * exp(-r * max(1.5-j/252, 0)) + 
+                            0.033 * exp(-r * max(1-j/252, 0)) + 
+                            0.033 * exp(-r * max(0.5-j/252, 0))) * 
+                            initial.price 
+                            || price[j, 1] > 2*initial.price) {
       cash[j,1] <- cash[j,1] + value[j,1]
       value[j:505,1] <- 0
       for (n in (j+1):505) {

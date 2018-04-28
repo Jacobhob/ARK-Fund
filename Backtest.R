@@ -6,7 +6,8 @@ dir.create("./Backtests/Graph")
 # PartI. Include pricing functions for component options
 if ((!exists("euro.put",   mode = "function")) &&
     (!exists("euro.call",  mode = "function")) &&
-    (!exists("put.on.put", mode = "function"))) {
+    (!exists("put.on.put", mode = "function")) &&
+    (!exists("put.on.put.MC", mode = "function"))) {
   source("./options.R")
 }
 

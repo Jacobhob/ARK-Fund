@@ -7,26 +7,26 @@ backtest <- function(historical.price, days, r, d, coupon, sigma, initial.price,
   p  <- euro.put(historical.price[1,1], sigma, r, d, 0.5, c*initial.price) # Strike price of put on put
   
   cash[1,1] <- initial.price - p - 
-    put.on.put(historical.price[1,1], sigma, r, d, 0.5, 0.5, p, k1) - 
-    put.on.put(historical.price[1,1], sigma, r, d, 1, 0.5, p, k1) - 
-    put.on.put(historical.price[1,1], sigma, r, d, 1.5, 0.5, p, k1)
+    put.on.put.formula(historical.price[1,1], sigma, r, d, 0.5, 0.5, p, k1) - 
+    put.on.put.formula(historical.price[1,1], sigma, r, d, 1, 0.5, p, k1) - 
+    put.on.put.formula(historical.price[1,1], sigma, r, d, 1.5, 0.5, p, k1)
   
   # Portfolio value is updated for each trading day
   for (j in 2:505) {
     # Day 2 ~ 125, period 0, the first half year:
     if (j <= 125) {
       value[j,1] <- euro.put(historical.price[j,1], sigma, r, d, 0.5-j/252, k1) +
-        put.on.put(historical.price[j,1], sigma, r, d, 0.5-j/252, 0.5, p, k1) + 
-        put.on.put(historical.price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) +
-        put.on.put(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 0.5-j/252, 0.5, p, k1) + 
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) +
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252))
       total.value[j,1] <- value[j,1] + cash[j,1]
     } 
     # Day 126:
     else if (j == 126) {
       value[j,1] <- euro.put(historical.price[j,1], sigma, r, d, 1-j/252, k2) + 
-        put.on.put(historical.price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) + 
-        put.on.put(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) + 
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) - p + max(k1 - historical.price[127,1], 0) - 
         initial.price * coupon
       total.value[j,1]  <- value[j,1] + cash[j,1] + initial.price * coupon
@@ -38,15 +38,15 @@ backtest <- function(historical.price, days, r, d, coupon, sigma, initial.price,
     # Day 127 ~ 251, period 1, the second half year:
     else if (j <= 251) {
       value[j,1] <- euro.put(historical.price[j,1], sigma, r, d, 1-j/252, k2) + 
-        put.on.put(historical.price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) + 
-        put.on.put(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) + 
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) 
       total.value[j,1] <- value[j,1] + cash[j,1] + initial.price * coupon
     }
     # Day 252:
     else if (j == 252) {
       value[j,1] <- euro.put(historical.price[j,1], sigma, r, d, 1.5-j/252, k3) +
-        put.on.put(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) - p + max(k2 -historical.price[253,1], 0) - 
         initial.price * coupon
       total.value[j,1]  <- value[j,1] + cash[j,1] + initial.price * coupon * 2
@@ -58,7 +58,7 @@ backtest <- function(historical.price, days, r, d, coupon, sigma, initial.price,
     # Day 253 ~ 378, period 3, the third half year:
     else if (j <= 377) {
       value[j,1] <- euro.put(historical.price[j,1], sigma, r, d, 1.5-j/252, k3) + 
-        put.on.put(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+        put.on.put.formula(historical.price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) 
       total.value[j,1] <- value[j,1] + cash[j,1] + initial.price * coupon * 2
     }

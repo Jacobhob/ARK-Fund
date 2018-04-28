@@ -2,7 +2,6 @@
 
 library(mnormt)
 
-
 # The function to calculate the price of a european call.
 euro.put <- function(s0, sigma, r, d, T, K) { 
   d1 <- (log(s0 / K) + (r - d + (0.5) * sigma^2) * T)/(sigma * sqrt(T))
@@ -30,17 +29,16 @@ put.on.put.MC <- function(s0, sigma, r, d, T, t, p, K, trials = 10000) {
   exp(-r * T) * mean(payoff)
 }
 
-
 # Use explicit formula to price a put on put
 binormsdist <- function(x1, x2, rho) {
   pmnorm(c(x1, x2), varcov = matrix(c(1, rho, rho, 1), nrow=2))
 }
 
-.d1 <<- function(s, k, v, r, tt, d) {
+.d1 <- function(s, k, v, r, tt, d) {
   .d1 <- (log(s/k) + (r-d+v^2/2)*tt)/(v*sqrt(tt))
 }
 
-.d2 <<- function(s, k, v, r, tt, d) {
+.d2 <- function(s, k, v, r, tt, d) {
   .d1(s, k, v, r, tt, d) - v*tt^(0.5)
 }
 
@@ -54,4 +52,3 @@ put.on.put.formula <- function(s, kuo, kco, v, r, t1, t2, d) {
            + kco * exp(-r * t1) * pnorm(a2))
   return(c(price=temp))
 }
-#put.on.put.formula(30708, 30708*0.85, 457.7266, 0.2407, r, 0.5, 1, d)

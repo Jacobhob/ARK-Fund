@@ -5,33 +5,33 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
     price[i+1,1] <- price[i,1] * exp((r - d - (1/2) * sigma^2) * (1/252) + sigma * dW)
   }
   
-  k1 <- c * price[1,1]   # Strike price of first put
-  k2 <- c * price[127,1] # Strike price of second put
-  k3 <- c * price[253,1] # Strik3 price of third put
-  k4 <- c * price[379,1] # Strike price of final put
-  p  <- euro.put(price[1,1], sigma, r, d, 0.5, c*initial.price) # Strike price of put on put
+  k1 <<- c * price[1,1]   # Strike price of first put
+  k2 <<- c * price[127,1] # Strike price of second put
+  k3 <<- c * price[253,1] # Strik3 price of third put
+  k4 <<- c * price[379,1] # Strike price of final put
+  p  <<- euro.put(price[1,1], sigma, r, d, 0.5, c*initial.price) # Strike price of put on put
   
   cash[1,1] <- initial.price - p - 
-               put.on.put(price[1,1], sigma, r, d, 0.5, 0.5, p, k1) - 
-               put.on.put(price[1,1], sigma, r, d, 1, 0.5, p, k1) - 
-               put.on.put(price[1,1], sigma, r, d, 1.5, 0.5, p, k1)
+               put.on.put.formula(price[1,1], k2, p, sigma, r, 0.5, 1, d) - 
+               put.on.put.formula(price[1,1], k3, p, sigma, r, 1, 1.5, d) - 
+               put.on.put.formula(price[1,1], k4, p, sigma, r, 1.5, 2, d)
   
   # Portfolio value is updated for each trading day
   for (j in 2:505) {
     # Day 2 ~ 126, period 0, the first half year:
-    if (j <= 126) {
+    if (j <= 125) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 0.5-j/252, k1) +
-                    put.on.put(price[j,1], sigma, r, d, 0.5-j/252, 0.5, p, k1) + 
-                    put.on.put(price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) +
-                    put.on.put(price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+                    put.on.put.formula(price[j,1], k2, p, sigma, r, 0.5-j/252, 1-j/252, d) + 
+                    put.on.put.formula(price[j,1], k3, p, sigma, r, 1-j/252, 1.5-j/252, d) +
+                    put.on.put.formula(price[j,1], k4, p, sigma, r, 1.5-j/252, 2-j/252, d)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252))
       total.value[j,1] <- value[j,1] + cash[j,1]
     } 
-    # Day 127:
-    else if (j == 127) {
+    # Day 126:
+    else if (j == 126) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 1-j/252, k2) + 
-                    put.on.put(price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) + 
-                    put.on.put(price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+                    put.on.put.formula(price[j,1], k3, p, sigma, r, 1-j/252, 1.5-j/252, d) + 
+                    put.on.put.formula(price[j,1], k4, p, sigma, r, 1.5-j/252, 2-j/252, d)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) - p + max(k1 - price[127,1], 0) - 
         initial.price * coupon
       total.value[j,1]  <- value[j,1] + cash[j,1] + initial.price * coupon
@@ -40,18 +40,18 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
                            euro.put(price[1,1], sigma, r, d, 0.5, c*price[1,1]) - 
                            euro.put(price[j,1], sigma, r, d, 0.5, c*price[j,1])
     }
-    # Day 128 ~ 252, period 1, the second half year:
-    else if (j <= 252) {
+    # Day 128 ~ 251, period 1, the second half year:
+    else if (j <= 251) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 1-j/252, k2) + 
-                    put.on.put(price[j,1], sigma, r, d, 1-j/252, 0.5, p, k1) + 
-                    put.on.put(price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
-      cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) 
+                    put.on.put.formula(price[j,1], k3, p, sigma, r, 1-j/252, 1.5-j/252, d) + 
+                    put.on.put.formula(price[j,1], k4, p, sigma, r, 1.5-j/252, 2-j/252, d)
+      cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252))
       total.value[j,1] <- value[j,1] + cash[j,1] + initial.price * coupon
     }
-    # Day 253:
-    else if (j == 253) {
+    # Day 252:
+    else if (j == 252) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 1.5-j/252, k3) +
-                    put.on.put(price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+                    put.on.put.formula(price[j,1], k4, p, sigma, r, 1.5-j/252, 2-j/252, d)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) - p + max(k2 -price[253,1], 0) - 
         initial.price * coupon
       total.value[j,1]  <- value[j,1] + cash[j,1] + initial.price * coupon * 2
@@ -60,15 +60,15 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
                            euro.put(price[1,1], sigma, r, d, 0.5, c*price[1,1]) - 
                            euro.put(price[j,1], sigma, r, d, 0.5, c*price[j,1])
     }
-    # Day 254 ~ 378, period 3, the third half year:
-    else if (j <= 378) {
+    # Day 253 ~ 377, period 3, the third half year:
+    else if (j <= 377) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 1.5-j/252, k3) + 
-                    put.on.put(price[j,1], sigma, r, d, 1.5-j/252, 0.5, p, k1)
+                    put.on.put.formula(price[j,1], k4, p, sigma, r, 1.5-j/252, 2-j/252, d)
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) 
       total.value[j,1] <- value[j,1] + cash[j,1] + initial.price * coupon * 2
     }
-    # Day 379:
-    else if (j == 379) {
+    # Day 378:
+    else if (j == 378) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 2-j/252, k4) 
       cash[j,1]  <- cash[j-1,1] * exp(r * (1 / 252)) - p + max(k3 -price[379,1], 0) - 
                     initial.price * coupon
@@ -78,7 +78,7 @@ simulation <- function(days, r, d, coupon, sigma, initial.price, management.fee,
                            euro.put(price[1,1], sigma, r, d, 0.5, c*price[1,1]) - 
                            euro.put(price[j,1], sigma, r, d, 0.5, c*price[j,1])
     }
-    # Day 380 ~ 504, period 4, the last half year:
+    # Day 379 ~ 504, period 4, the last half year:
     else if (j <= 504) {
       value[j,1] <- euro.put(price[j,1], sigma, r, d, 2-j/252, k4)  
       cash[j,1]  <- cash[j-1,1] * exp(r*(1/252)) 

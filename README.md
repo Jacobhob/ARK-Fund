@@ -23,6 +23,10 @@ FINA4353 Financial Engineering Structured Product Design Project
 
 ## Files contained and usage:
 
+### Packages installed for runing the code:
+"mnormt": For calculating cdf for nomal (binomial nomal) distribution. <br>
+"data.table": For writing results to csv files.
+
 ### Master scripts:
 #### ARK.R: 
 This module is developed for generating portfolio performance simulation results for our structured product.
@@ -33,7 +37,7 @@ This module is developed for generating backtesting results for the portfolio in
 #### simulation.R:
 This module provides a supporting function for simulating portfolio performance on pre-determined conditions.
 #### options.R:
-This module provides functions for calculating prices for European put, European call, and put on European put.
+This module provides functions for calculating prices for European put, European call, and put on put.
 #### backtest.source.R:
 This module provides a supporting function for tracking portfolio performance on historical data.
 

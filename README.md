@@ -2,7 +2,7 @@
 FINA4353 Financial Engineering Structured Product Design Project
 
 @ Description:
-  This is a self-designed stuructured product sample for FINA4353 Financial Engineering.
+  This is a self-designed structured product sample for FINA4353 Financial Engineering.
 
 @ Authors:
 

@@ -1,5 +1,4 @@
 library("data.table")
-library("readxl")
 # Store all files in directory "./Backtests", sore graphs in "./Backtests/Graph"
 dir.create("./Backtests")
 dir.create("./Backtests/Graph")
@@ -12,8 +11,8 @@ if ((!exists("euro.put",   mode = "function")) &&
 }
 
 # PartII. Load in historical HSI price
-bear <- read_excel("./BacktestBear.xlsx")
-bull <- read_excel("./BacktestBull.xlsx")
+bear <- readRDS("./BacktestBear.rds")
+bull <- readRDS("./BacktestBull.rds")
 
 # PartIII. Backtesting for our structured product
 # Parameters of component options

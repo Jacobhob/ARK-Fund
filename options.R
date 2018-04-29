@@ -55,8 +55,8 @@ binormsdist <- function(x1, x2, rho) {
 #'     buy or sell the underlying option at time t1)
 #' @param t1 time until exercise for the compound option
 #' @param t2 time until exercise for the underlying option
-put.on.put.formula <- function(s, kuo, kco, v, r, t1, t2, d) {
-  a1 <- .d1(s, s, v, r, t1, d)
+put.on.put.formula <- function(s, kuo, kco, v, r, t1, t2, d, s0) {
+  a1 <- .d1(s, s0, v, r, t1, d)
   a2 <- a1 - v * t1 ^ 0.5
   d1 <- .d1(s, kuo, v, r, t2, d)
   d2 <- d1 - v * t2 ^ 0.5

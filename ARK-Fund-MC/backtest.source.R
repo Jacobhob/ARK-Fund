@@ -1,4 +1,3 @@
-library(derivmkts)
 backtest <- function(historical.price, days, r, d, coupon, sigma, initial.price, management.fee, c) {
   
   k1 <- c * historical.price[1,1]   # Strike price of first put

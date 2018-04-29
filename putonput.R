@@ -16,8 +16,8 @@ binormsdist <- function(x1, x2, rho) {
 .nd2 <- function(s, k, v, r, tt, d)
   pnorm(.d2(s, k, v, r, tt, d))
 
-putonput.S0 <- function(s, kuo, kco, v, r, t1, t2, d) {
-  a1 <- .d1(s, s, v, r, t1, d)
+putonput.S0 <- function(s, kuo, kco, v, r, t1, t2, d, critical.s) {
+  a1 <- .d1(s, critical.s, v, r, t1, d)
   a2 <- a1 - v * t1 ^ 0.5
   d1 <- .d1(s, kuo, v, r, t2, d)
   d2 <- d1 - v * t2 ^ 0.5

@@ -1,5 +1,5 @@
 library("data.table")
-# Store all files in directory "./Backtests", sore graphs in "./Backtests/Graph"
+# Store all files in directory "./Backtests", store graphs in "./Backtests/Graph"
 dir.create("./Backtests")
 dir.create("./Backtests/Graph")
 

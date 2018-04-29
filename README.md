@@ -50,6 +50,12 @@ This file contains the historical price data for HSI in 2007 ~ 2009 bear market.
 #### BacktestBull.rds:
 This file contains the historical price data for HSI in 2016 ~ 2018 bull market.
 
+### Additional Directory:
+#### ARK-Fund_MC:
+This directory is similar to the original one. <br>
+The only difference is that we use Monte Carlo Method for pricing put on put. <br>
+The result is consistent with the original one.
+
 ## Run program by command line:
     This program can be executed by command line under Linux environment.
     For R environment, we suggest using R version 3.4.4 (2018-03-15) -- "Someone to Lean On" to run this set of programs.

@@ -46,7 +46,7 @@ for (a in 1:times) {
   price[1,1] <- initial.price
 
   if (!exists("simulation", mode = "function")) {
-    source("simulation.R")
+    source("simulation.MC.R")
   }
   simulation(days, r, d, coupon, sigma, initial.price, management.fee, c)
   

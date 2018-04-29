@@ -74,6 +74,8 @@ $ R <ARK.R --save <br>
   A directory "Simulations" will be created for storing the results. <br>
   
   Seven csv files will be generated and saved to ./Simulations: <br>
+  
+  
   "BANK.csv" will store the bank revenue for each simulation, <br>
   with specific revenue generated in each 0.5 years stored separately; <br>
   "CASH.csv" will store the value of investment in risk-free asset <br>

@@ -78,14 +78,26 @@ $ R <ARK.R --save <br>
   
   "BANK.csv" will store the bank revenue for each simulation, <br>
   with specific revenue generated in each 0.5 years stored separately; <br>
+  
+  
   "CASH.csv" will store the value of investment in risk-free asset <br>
   on each trading day for each simulation; <br>
+  
+  
   "KNOCKOUT.csv" will store the knockout day for each simulation, <br>
   and x=0 means no knockout occurs in this simulation; <br>
+  
+  
   "PRICE.csv" will store the simulated HSI price in each simulation; <br>
+  
+  
   "RETURN.csv" will store the cumulative return of the portfolio; <br>
+  
+  
   "TOTAL.csv" will store the total value of the portofolio, including investment <br>
   in risk-free asset, value of options, and coupons distributed to investors. <br>
+  
+  
   "VALUE.csv" will store the value of exsisting options in the portfolio. <br>
   
   Graphs are also generated for each simulation. <br>

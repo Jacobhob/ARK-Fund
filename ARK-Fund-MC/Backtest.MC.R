@@ -44,7 +44,7 @@ bank.revenue <- data.frame(rep(0,4))
 knockout.date <- 0
 
 if (!exists("backtest", mode = "function")) {
-  source("backtest.source.R")
+  source("backtest.source.MC.R")
 }
 
 # Backtesting for 2007~2009 bear market

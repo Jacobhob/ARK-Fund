@@ -31,7 +31,8 @@ FINA4353 Financial Engineering Structured Product Design Project
 
 ### Master scripts:
 #### ARK.R: 
-This module is developed for generating portfolio performance simulation results for our structured product.
+This module is developed for generating portfolio performance simulation results for our structured product. <br>
+The default # of trials is 5. You could freely set the number by changing the variable time in Line 36.
 #### Backtest.R: 
 This module is developed for generating backtesting results for the portfolio in bear and bull market using empirical data.
 

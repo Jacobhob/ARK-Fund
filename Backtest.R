@@ -43,7 +43,7 @@ total.value  <- data.frame(rep(0,days)) # Total value of our portfolio
 bank.revenue <- data.frame(rep(0,4))
 knockout.date <- 0
 
-if (!exists("backtest.function", mode = "function")) {
+if (!exists("backtest", mode = "function")) {
   source("backtest.source.R")
 }
 

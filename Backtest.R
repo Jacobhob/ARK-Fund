@@ -19,8 +19,8 @@ bull <- readRDS("./BacktestBull.rds")
 # Parameters of component options
 trading.days.yr <- 252 
 days   <- trading.days.yr * 2 + 1 # The maturity of the structured product
-r      <- 0.008  # Risk-free Rate
-d      <- 0.018  # Annualized HSI dividend yield
+r      <- 0.0223  # Risk-free Rate
+d      <- 0.0415  # Annualized HSI dividend yield
 coupon <- 0.1/3  # Coupon rate
 sigma  <- 0.2407 # HSI volatility
 management.fee <- 0     # 0 management fee

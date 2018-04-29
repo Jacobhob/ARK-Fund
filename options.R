@@ -63,5 +63,5 @@ put.on.put.formula <- function(s, kuo, kco, v, r, t1, t2, d, s0) {
   temp <- (s * exp(-d * t2) * binormsdist(a1, -d1, -(t1 / t2) ^ 0.5)
            - kuo * exp(-r * t2) * binormsdist(a2, -d2, -(t1 / t2) ^ 0.5)
            + kco * exp(-r * t1) * pnorm(a2))
-  return(c(price=temp),0)
+  return(c(price=temp))
 }

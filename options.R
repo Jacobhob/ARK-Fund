@@ -18,15 +18,15 @@ euro.call <- function(s0, sigma, r, d, T, K) {
 
 # Use Monte Carlo simulation to price a put on put. 
 # This put-on-put is an upward protection.
-put.on.put.MC <- function(s0, sigma, r, d, T, t, p, K, trials = 10000) {
-  # T: maturity of put on put
-  # t: maturity of underlying put
+put.on.put.MC <- function(s0, K, p, sigma, r, t1, t2, d, trials = 10000) {
+  # t1: maturity of put on put
+  # t2: maturity of underlying put
   # p: strike price of put on put
-  dW <- rnorm(trials) * sqrt(T)
-  sT <- s0 * exp((r - d - (1/2) * sigma^2) * T + sigma * dW)
-  put.price <- euro.put(sT, sigma, r, d, t, K)
+  dW <- rnorm(trials) * sqrt(t1)
+  sT <- s0 * exp((r - d - (1/2) * sigma^2) * t1 + sigma * dW)
+  put.price <- euro.put(sT, sigma, r, d, t2-t1, K)
   payoff <- pmax(p - put.price,0)
-  exp(-r * T) * mean(payoff)
+  exp(-r * t1) * mean(payoff)
 }
 
 # Use explicit formula to price a put on put

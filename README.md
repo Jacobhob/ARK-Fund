@@ -67,7 +67,7 @@ The result is consistent with the original one.
 #### First, enter the directory of this file by command line
 #### To run simulations on current stock price, execute: 
 
-$ R <ARK.R --save <br>
+$ R <./code/ARK.R --save <br>
 
 #### Output of the program:
 
@@ -106,7 +106,7 @@ $ R <ARK.R --save <br>
   and simulation data will be stored in .csv files under ./Simulations/ <br>
 #### To run backtesting with two given datasets, execute: 
 
-$ R <Backtest.R --save
+$ R <./code/Backtest.R --save
 
 #### Output of the program:
 
@@ -124,7 +124,7 @@ $ R <Backtest.R --save
 #### Download and extract ARK-Fund from Github
 #### Then open RStudio by GUI or execute under the directory of this file: 
 
-$ rstudio *.R &
+$ rstudio ./code/*.R &
 #### Set up working directory
  
 Use setwd({the path of this file}) to change the working directory.

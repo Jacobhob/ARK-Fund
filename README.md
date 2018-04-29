@@ -73,7 +73,7 @@ $ R <./code/ARK.R --save <br>
 
   A directory "Simulations" will be created for storing the results. <br>
   
-  Seven csv files will be generated and saved to ./Simulations: <br>
+  Seven csv files will be generated and saved to ./data/Simulations: <br>
   
   
   "BANK.csv" will store the bank revenue for each simulation, <br>
@@ -102,8 +102,8 @@ $ R <./code/ARK.R --save <br>
   
   Graphs are also generated for each simulation. <br>
   
-  Graphs will be stored under ./Simulations/Graph/ <br>
-  and simulation data will be stored in .csv files under ./Simulations/ <br>
+  Graphs will be stored under ./data/Simulations/Graph/ <br>
+  and simulation data will be stored in .csv files under ./data/Simulations/ <br>
 #### To run backtesting with two given datasets, execute: 
 
 $ R <./code/Backtest.R --save
@@ -117,8 +117,8 @@ $ R <./code/Backtest.R --save
   Two graphs will be generated, showing changes in price, value, cash and <br>
   total value for bull and bear markets backtesting. <br>
   
-  Data will be stored in .csv files under ./Backtests/ and <br>
-  graphs of the two backtesting will be stored undner ./Backtests/Graph <br>
+  Data will be stored in .csv files under ./data/Backtests/ and <br>
+  graphs of the two backtesting will be stored undner ./data/Backtests/Graph <br>
 
 ## Run program using RStudio
 #### Download and extract ARK-Fund from Github
